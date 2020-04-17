@@ -1,0 +1,74 @@
+<div class="card" *ngIf="factura">
+    <div class="card-header">
+        <h3 class="d-block w-100">Factura de Venta<small class="float-right">Fecha: {{factura.fecha}}</small></h3>
+    </div>
+    <div class="card-body">
+        <div class="row invoice-info">
+            <div class="col-sm-4 invoice-col">
+                Empresa:
+                <address>
+                    <strong>Cidenet</strong><br>Carrera 52 # 14 – 30,  <br>Centro Empresarial Olaya Herrera,<br>Teléfono: +(57 4) 3 222 567 Ext.102
+
+                    <br>Email: seleccion@cidenet.com.co
+                </address>
+            </div>
+            <div class="col-sm-4 invoice-col">
+                Cliente
+                <address>
+                    <strong>Nit: {{factura.cliente.nit}}</strong><br>Nombres: {{factura.cliente.nombres}}<br>Apellidos: {{factura.cliente.apellidos}}<br>Telefono: {{factura.cliente.telefono}}<br>
+                </address>
+            </div>
+            <div class="col-sm-4 invoice-col">
+                <b>Factura #0{{factura.id}}</b><br>
+                <br>
+                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Serial</th>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                            <th>Valor Unitario</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of factura.items">
+                            <td>{{item.producto.serial}}</td>
+                            <td>{{item.producto.descripcion}}</td>
+                            <td>{{item.cantidad}}</td>
+                            <td>{{item.producto.valorUnitario}}</td>
+                            <td>{{item.importe}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                
+            </div>
+            <div class="col-6">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th style="width:50%">Subtotal:</th>
+                            <td>${{factura.total}}</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>Total:</th>
+                            <td>${{factura.total}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

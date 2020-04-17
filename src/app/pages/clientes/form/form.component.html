@@ -1,0 +1,71 @@
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Formulario de Clientes</h5>
+    </div>
+    <div class="card-body">
+        <form #formCliente="ngForm">
+            <div class="form-group">
+                <label for="exampleInputUsername1">Identificación:</label>
+                <input type="number" class="form-control" id="nit" name="nit" placeholder="Ingrese su Identificación"
+                    [(ngModel)]="clientes.nit" #nit="ngModel">
+                <div class="alert alert-danger" *ngIf="nit.invalid && (nit.dirty || nit.touched)">
+                    <div *ngIf="nit.errors.required">
+                        El Nit es Requerido
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nombres:</label>
+                <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Ingrese Sus Nombres"
+                    [(ngModel)]="clientes.nombres" required #nombres="ngModel">
+                <div class="alert alert-danger" *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)">
+                    <div *ngIf="nombres.errors.required">
+                        El Nombre es Requerido
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Apellidos: </label>
+                <input type="text" class="form-control" id="apellidos" name="apellidos"
+                    placeholder="Ingrese Sus Apellidos" [(ngModel)]="clientes.apellidos" required #apellidos="ngModel">
+                <div class="alert alert-danger" *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
+                    <div *ngIf="apellidos.errors.required">
+                        El Apellido es Requerido
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputConfirmPassword1">Telefono:</label>
+                <input type="number" class="form-control" id="telefono" name="telefono"
+                    placeholder="Ingrese Su Telefono" [(ngModel)]="clientes.telefono" required #telefono="ngModel">
+                <div class="alert alert-danger" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+                    <div *ngIf="telefono.errors.required">
+                        El telefono es Requerido
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputConfirmPassword1">Genero:</label>
+                <select class="form-control" name="genero" [(ngModel)]="clientes.genero">
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-sm btn-success" style="margin-right: 5px;" role="button" (click)='create()'
+                        *ngIf="!clientes.id else elseBlock" [disabled]="!formCliente.form.valid"><i
+                            class="ik ik-check"></i>Crear</button>
+                    <ng-template #elseBlock>
+                        <button class="btn btn-sm btn-primary" style="margin-right: 5px;" role="button"
+                            (click)='update()' [disabled]="!formCliente.form.valid"> <i class="ik ik-edit-1"></i>
+                            Actualizar</button>
+                    </ng-template>
+                    <a type="button" class="btn btn-sm btn-danger" style="color: white;" routerLink="/clientes"><i
+                            class="ik ik-log-out"></i>Salir</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
